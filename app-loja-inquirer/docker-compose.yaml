@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  # Nome do seu serviço (usado como hostname/serviço para outras aplicações no Docker)
+  postgres_db:
+    image: postgres:16 # Imagem do PostgreSQL versão 16
+    container_name: loja-app
+    ports:
+      - "5500:5432" 
+    environment:
+      POSTGRES_DB: apploja_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    volumes:
+      # Volume nomeado 'postgres_data' no seu PC, persistindo o diretório de dados do Postgre dentro do container
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+# Definição do Volume para Persistência
+volumes:
+  postgres_data:
